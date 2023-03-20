@@ -1,0 +1,27 @@
+version: '3.7'
+
+services: 
+  postgres:
+    image: 'postgres:11'
+    container_name: postgres
+    ports: 
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    ports:
+      - 9090:80
+
+  api:
+    image: springboot-task-tracker-postgres-k8s
+    ports:
+      - "8080-8085:8080"
+          
+volumes: 
+  springboot-task-tracker-postgres-k8s-db-volume:
+  springboot-task-tracker-postgres-k8s-pgadmin-volume:
+
+networks:
+  default:
+    name: springboot-task-tracker-postgres-k8s-network
